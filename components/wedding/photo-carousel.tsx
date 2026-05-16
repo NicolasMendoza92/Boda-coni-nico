@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/carousel";
 
 const photos = [
-  { src: "/img/foto5.jpg", alt: "Foto 1" },
-  { src: "/img/foto2.jpg", alt: "Foto 2" },
-  { src: "/img/foto8.jpg", alt: "Foto 3" },
-  { src: "/img/foto6.jpg", alt: "Foto 4" },
-  { src: "/img/foto4.jpg", alt: "Foto 5" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto5.JPG", alt: "Foto 1" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto2.JPG", alt: "Foto 2" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto8.JPG", alt: "Foto 3" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto6.JPG", alt: "Foto 4" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto4.JPG", alt: "Foto 5" },
 ];
 
 export function PhotoCarousel() {
