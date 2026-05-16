@@ -116,7 +116,7 @@ export function RsvpSection() {
                   className="sr-only"
                   {...register("asiste")}
                 />
-                <span className="text-sm">¡Allí estaré! 💃</span>
+                <span className="text-sm">¡Si, confirmo! 💃</span>
               </label>
               <label
                 className={`flex cursor-pointer items-center justify-center rounded-md border-2 p-4 transition ${

@@ -12,11 +12,11 @@ import {
 } from "@/components/ui/carousel";
 
 const photos = [
-  { src: "https://picsum.photos/seed/coni1/800/1000", alt: "Foto 1" },
-  { src: "https://picsum.photos/seed/coni2/800/1000", alt: "Foto 2" },
-  { src: "https://picsum.photos/seed/coni3/800/1000", alt: "Foto 3" },
-  { src: "https://picsum.photos/seed/coni4/800/1000", alt: "Foto 4" },
-  { src: "https://picsum.photos/seed/coni5/800/1000", alt: "Foto 5" },
+  { src: "/img/foto5.jpg", alt: "Foto 1" },
+  { src: "/img/foto2.jpg", alt: "Foto 2" },
+  { src: "/img/foto8.jpg", alt: "Foto 3" },
+  { src: "/img/foto6.jpg", alt: "Foto 4" },
+  { src: "/img/foto4.jpg", alt: "Foto 5" },
 ];
 
 export function PhotoCarousel() {
@@ -29,9 +29,9 @@ export function PhotoCarousel() {
   return (
     <section className="px-6 py-20" aria-label="Galería de fotos">
       <div className="mx-auto max-w-4xl">
-        <h2 className="mb-8 text-center font-serif text-3xl md:text-4xl">
+        {/* <h2 className="mb-8 text-center font-serif text-3xl md:text-4xl">
           Nuestra historia en imágenes
-        </h2>
+        </h2> */}
 
         <Carousel
           plugins={[autoplay]}

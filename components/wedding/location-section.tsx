@@ -47,7 +47,7 @@ export function LocationSection() {
               
               <div>
                 <h4 className="font-serif text-xl text-foreground mb-2">
-                  Parroquia Nuestra Senora del Valle
+                  Parroquia Nuestra Señora del Valle
                 </h4>
                 <p className="text-muted-foreground">
                   Florida Sur 251<br />
