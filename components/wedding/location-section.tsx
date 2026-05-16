@@ -1,28 +1,16 @@
-import { MapPin, Car, Church, Clock, PartyPopperIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { AddToCalendar } from "./add-to-calendar"
+import { MapPin, Car, Church, Clock, PartyPopperIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { AddToCalendar } from "./add-to-calendar";
 
 export function LocationSection() {
   return (
     <section className="py-24 px-6 bg-card">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/20 mb-6">
-            <MapPin className="w-8 h-8 text-primary" />
-          </div>
-
-          <h2 className="font-serif text-3xl md:text-4xl text-foreground mb-4">
-            Ceremonia y Fiesta
-          </h2>
-
-          <div className="w-16 h-px bg-primary mx-auto mb-10" />
-        </div>
-
-        {/* Ceremonia - Iglesia */}
-        <div className="mb-16">
+        {/* Ceremonia - Iglesia */} 
+        <div className="mb-10">
           <div className="flex items-center justify-center gap-3 mb-6">
             <Church className="w-6 h-6 text-secondary" />
-            <h3 className="font-serif text-2xl text-foreground">Ceremonia</h3>
+            <h3 className="font-serif text-3xl text-foreground">Ceremonia</h3>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -42,16 +30,20 @@ export function LocationSection() {
             <div className="space-y-4 order-1 md:order-2 text-center md:text-left">
               <div className="flex items-center justify-center md:justify-start gap-2 text-secondary">
                 <Clock className="w-5 h-5" />
-                <span className="font-serif text-lg">Sabado 15 de Agosto - 16:00 hs</span>
+                <span className="font-serif text-xl">
+                  Sabado 15 de Agosto - <b>16:00 hs</b>
+                </span>
               </div>
-              
+
               <div>
                 <h4 className="font-serif text-xl text-foreground mb-2">
                   Parroquia Nuestra Señora del Valle
                 </h4>
                 <p className="text-muted-foreground">
-                  Florida Sur 251<br />
-                  T4107 Yerba Buena, Tucuman<br />
+                  Florida Sur 251
+                  <br />
+                  T4107 Yerba Buena, Tucuman
+                  <br />
                   Argentina
                 </p>
               </div>
@@ -64,7 +56,7 @@ export function LocationSection() {
                   className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
                 >
                   <a
-                    href="https://maps.app.goo.gl/owq1WYBxqrCQasNt9"
+                    href="https://maps.app.goo.gl/EjT7TDvo42PbrZik6"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -72,7 +64,7 @@ export function LocationSection() {
                     Ver en Google Maps
                   </a>
                 </Button>
-                
+
                 <AddToCalendar />
               </div>
             </div>
@@ -82,15 +74,17 @@ export function LocationSection() {
         {/* Divider */}
         <div className="flex items-center gap-4 mb-16">
           <div className="flex-1 h-px bg-border" />
-          <span className="text-muted-foreground font-serif text-lg">y luego...</span>
+          <span className="text-muted-foreground font-serif text-lg">
+            y luego...
+          </span>
           <div className="flex-1 h-px bg-border" />
         </div>
 
         {/* Fiesta */}
         <div>
           <div className="flex items-center justify-center gap-3 mb-6">
-             <PartyPopperIcon className="w-6 h-6 text-secondary" />
-            <h3 className="font-serif text-2xl text-foreground">Fiesta</h3>
+            <PartyPopperIcon className="w-6 h-6 text-secondary" />
+            <h3 className="font-serif text-3xl text-foreground">Fiesta</h3>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -109,12 +103,14 @@ export function LocationSection() {
 
             <div className="space-y-4 text-center md:text-left">
               <div>
-                <h4 className="font-serif text-xl text-foreground mb-2">
+                <h4 className="font-serif text-2xl text-foreground mb-2">
                   Terrazas de San Jose
                 </h4>
                 <p className="text-muted-foreground">
-                  Camino de Sirga y La Rioja<br />
-                  Yerba Buena, Tucuman 4107<br />
+                  Camino de Sirga y La Rioja
+                  <br />
+                  Yerba Buena, Tucuman 4107
+                  <br />
                   Argentina
                 </p>
               </div>
@@ -122,17 +118,18 @@ export function LocationSection() {
               <div className="flex items-start justify-center md:justify-start gap-3 text-muted-foreground">
                 <Car className="w-5 h-5 text-primary mt-1 shrink-0" />
                 <p className="text-sm text-left">
-                  A 20 minutos del centro de San Miguel de Tucuman. Recomendamos ir en remis/taxi o Uber.
+                  A 20 minutos del centro de San Miguel de Tucuman. Recomendamos
+                  ir en remis/taxi o Uber.
                 </p>
               </div>
-
               <Button
                 asChild
+                variant="outline"
                 size="lg"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 w-full sm:w-auto"
+                className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
               >
                 <a
-                  href="https://www.google.com/maps/place/Nuevo+Terrazas+de+San+Jos%C3%A9/@-26.8289153,-65.3551126,14z"
+                  href="https://maps.app.goo.gl/owq1WYBxqrCQasNt9"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -145,5 +142,5 @@ export function LocationSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

@@ -45,8 +45,8 @@ export function HeroSection() {
       <FloralDecoration className="absolute -bottom-12 -right-12 w-48 md:w-72 h-auto opacity-40 rotate-180 pointer-events-none" />
 
       <div className="relative z-10 text-center max-w-3xl mx-auto">
-        <p className="text-sm md:text-base tracking-[0.3em] uppercase text-muted-foreground mb-8">
-          Nos casamos
+        <p className="text-xl md:text-base tracking-[0.3em] uppercase text-muted-foreground mb-8">
+          ¡Nos casamos!
         </p>
 
         <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light tracking-wide text-foreground mb-6">

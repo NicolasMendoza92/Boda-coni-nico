@@ -78,7 +78,10 @@ export function RsvpSection() {
           <Heart className="mx-auto mb-4 h-8 w-8 text-primary" />
           <h2 id="rsvp-title" className="font-serif text-3xl md:text-4xl">
             Confirma tu asistencia
-          </h2>
+          </h2> 
+           <p className="mt-2 text-sm text-muted-foreground">
+            15 de Agosto - 16:00 hs
+          </p>
           <p className="mt-2 text-sm text-muted-foreground">
             Antes del 25 de Julio, por favor 🙏
           </p>

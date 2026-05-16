@@ -16,7 +16,11 @@ const photos = [
   { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto2.JPG", alt: "Foto 2" },
   { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto8.JPG", alt: "Foto 3" },
   { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto6.JPG", alt: "Foto 4" },
-  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto4.JPG", alt: "Foto 5" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/Foto9.JPG", alt: "Foto 5" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/Foto10.JPG", alt: "Foto 6" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto4.JPG", alt: "Foto 7" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/Foto11.JPG", alt: "Foto 8" },
+  { src: "https://my-blog-bucket-nm.s3.eu-north-1.amazonaws.com/foto7.JPG", alt: "Foto 9" },
 ];
 
 export function PhotoCarousel() {

@@ -3,7 +3,7 @@ import { createHmac, timingSafeEqual } from "crypto"
 
 const COOKIE_NAME = "admin_session"
 const SECRET = process.env.ADMIN_SESSION_SECRET!
-const MAX_AGE = 60 * 60 * 24 * 7 // 7 días
+const MAX_AGE = 60 * 60 * 24 * 120 // 120 días
 
 function sign(value: string) {
   return createHmac("sha256", SECRET).update(value).digest("hex")

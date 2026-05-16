@@ -2,6 +2,7 @@ import { redirect } from "next/navigation"
 import Link from "next/link"
 import { isAdminLoggedIn, destroyAdminSession } from "@/lib/admin-session"
 import { supabaseAdmin } from "@/lib/supabase"
+import { checkSupabaseStatus } from "@/lib/supabase-status"
 import { Button } from "@/components/ui/button"
 import {
   Table,
@@ -12,9 +13,9 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
+import { DbPausedWarning } from "@/components/wedding/db-paused-warning"
 import { Download, ExternalLink, LogOut, Users, Check, X } from "lucide-react"
 
-// Sin caché — siempre datos frescos
 export const dynamic = "force-dynamic"
 
 async function logout() {
@@ -26,6 +27,32 @@ async function logout() {
 export default async function AdminPage() {
   if (!(await isAdminLoggedIn())) redirect("/admin/login")
 
+  // 1) Chequeo rápido del estado de Supabase (con timeout)
+  const status = await checkSupabaseStatus()
+
+  // 2) Si está dormido → pantalla amigable con botón para despertar
+  if (status.kind === "paused" || status.kind === "timeout") {
+    return <DbPausedWarning message={status.message} />
+  }
+
+  // 3) Si hay error de auth o desconocido → mensaje claro
+  if (status.kind !== "ok") {
+    return (
+      <main className="min-h-[100dvh] flex items-center justify-center px-6">
+        <div className="max-w-md w-full rounded-lg border border-destructive/30 bg-destructive/5 p-6">
+          <h2 className="font-medium text-destructive mb-2">
+            Error de conexión con la base de datos
+          </h2>
+          <p className="text-sm text-muted-foreground mb-2">{status.message}</p>
+          <p className="text-xs text-muted-foreground">
+            Revisa <code>SUPABASE_SERVICE_ROLE_KEY</code> en las variables de entorno.
+          </p>
+        </div>
+      </main>
+    )
+  }
+
+  // 4) Todo OK → query real
   const { data: rsvps, error } = await supabaseAdmin
     .from("rsvp")
     .select("id, created_at, nombre, asiste, alergias")
@@ -44,7 +71,7 @@ export default async function AdminPage() {
   const noes = total - sies
 
   return (
-    <main className="min-h-100dvh bg-background px-4 py-8 md:px-6 md:py-12">
+    <main className="min-h-[100dvh] bg-background px-4 py-8 md:px-6 md:py-12">
       <div className="mx-auto max-w-4xl">
         {/* Header */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
