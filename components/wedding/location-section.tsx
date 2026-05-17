@@ -1,4 +1,11 @@
-import { MapPin, Car, Church, Clock, PartyPopperIcon } from "lucide-react";
+import {
+  MapPin,
+  Car,
+  Church,
+  Clock,
+  PartyPopperIcon,
+  Shirt,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AddToCalendar } from "./add-to-calendar";
 
@@ -6,7 +13,7 @@ export function LocationSection() {
   return (
     <section className="py-24 px-6 bg-card">
       <div className="max-w-4xl mx-auto">
-        {/* Ceremonia - Iglesia */} 
+        {/* Ceremonia - Iglesia */}
         <div className="mb-10">
           <div className="flex items-center justify-center gap-3 mb-6">
             <Church className="w-6 h-6 text-secondary" />
@@ -65,7 +72,17 @@ export function LocationSection() {
                   </a>
                 </Button>
 
-                <AddToCalendar />
+                <AddToCalendar
+                  title="Ceremonia · Boda Coni & Nico"
+                  description="Te esperamos en la Parroquia Nuestra Señora del Valle para celebrar nuestra ceremonia."
+                  location="Parroquia Nuestra Señora del Valle, Florida Sur 251, Yerba Buena, Tucumán, Argentina"
+                  startDate="2026-08-15"
+                  startTime="16:00"
+                  endDate="2026-08-15"
+                  endTime="17:15"
+                  uid="ceremonia"
+                  buttonLabel="Agendar ceremonia"
+                />
               </div>
             </div>
           </div>
@@ -88,7 +105,7 @@ export function LocationSection() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 items-center">
-            <div className="aspect-video md:aspect-auto md:h-64 bg-muted rounded-lg overflow-hidden">
+            <div className="aspect-video md:aspect-auto md:h-64 bg-muted rounded-lg overflow-hidden order-2 md:order-1">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3560.6!2d-65.317005!3d-26.828916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x942243006f0f99c5%3A0x8bce8b3a06e4bd3f!2sNuevo%20Terrazas%20de%20San%20Jos%C3%A9!5e0!3m2!1ses!2sar!4v1"
                 width="100%"
@@ -101,9 +118,16 @@ export function LocationSection() {
               />
             </div>
 
-            <div className="space-y-4 text-center md:text-left">
+            <div className="space-y-4 order-1 md:order-2 text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-2 text-secondary">
+                <Clock className="w-5 h-5" />
+                <span className="font-serif text-xl">
+                  Sabado 15 de Agosto - <b>17:15 hs</b>
+                </span>
+              </div>
+
               <div>
-                <h4 className="font-serif text-2xl text-foreground mb-2">
+                <h4 className="font-serif text-xl text-foreground mb-2">
                   Terrazas de San Jose
                 </h4>
                 <p className="text-muted-foreground">
@@ -122,23 +146,52 @@ export function LocationSection() {
                   ir en remis/taxi o Uber.
                 </p>
               </div>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
-              >
-                <a
-                  href="https://maps.app.goo.gl/owq1WYBxqrCQasNt9"
-                  target="_blank"
-                  rel="noopener noreferrer"
+
+              <div className="flex flex-col sm:flex-row gap-3 justify-center md:justify-start">
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
                 >
-                  <MapPin className="w-5 h-5 mr-2" />
-                  Ver en Google Maps
-                </a>
-              </Button>
+                  <a
+                    href="https://maps.app.goo.gl/owq1WYBxqrCQasNt9"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <MapPin className="w-5 h-5 mr-2" />
+                    Ver en Google MapsS
+                  </a>
+                </Button>
+
+                <AddToCalendar
+                  title="Fiesta · Boda Coni & Nico"
+                  description="¡A celebrar! Te esperamos en Terrazas de San José."
+                  location="Terrazas de San José, Camino de Sirga y La Rioja, Yerba Buena, Tucumán, Argentina"
+                  startDate="2026-08-15"
+                  startTime="17:15"
+                  endDate="2026-08-16"
+                  endTime="01:00"
+                  uid="fiesta"
+                  buttonLabel="Agendar fiesta"
+                />
+              </div>
             </div>
           </div>
+        </div>
+        {/* Dress Code */}
+        <div className="mt-10 pt-6 border-t border-border flex flex-col items-center text-center">
+          <div className="flex items-center gap-2 mb-2">
+            <Shirt className="w-5 h-5 text-primary" />
+            <p className="font-serif text-lg text-foreground">
+              Dress Code:{" "}
+              <span className="text-muted-foreground font-bold">Elegante</span>
+            </p>
+          </div>
+          <ul className="flex flex-col gap-0.5 text-sm text-muted-foreground">
+            <li>Ellas: vestido de fiesta</li>
+            <li>Ellos: traje formal</li>
+          </ul>
         </div>
       </div>
     </section>

@@ -27,15 +27,15 @@ export function PhotoCarousel() {
   // 👇 useState con inicializador perezoso: se llama UNA sola vez al montar
   // Se devuelve directamente la instancia, sin .current ni acceso a ref durante render.
   const [autoplay] = useState(() =>
-    Autoplay({ delay: 4000, stopOnInteraction: true, stopOnMouseEnter: true })
+    Autoplay({ delay: 3000, stopOnInteraction: true, stopOnMouseEnter: true })
   );
 
   return (
     <section className="px-6 py-20" aria-label="Galería de fotos">
       <div className="mx-auto max-w-4xl">
-        {/* <h2 className="mb-8 text-center font-serif text-3xl md:text-4xl">
-          Nuestra historia en imágenes
-        </h2> */}
+        <h2 className="mb-8 text-center font-serif text-3xl md:text-4xl">
+          Un poco de nostostros
+        </h2>
 
         <Carousel
           plugins={[autoplay]}
@@ -62,9 +62,9 @@ export function PhotoCarousel() {
           <CarouselNext className="hidden md:flex" />
         </Carousel>
 
-        <p className="mt-4 text-center text-xs text-muted-foreground md:hidden">
+        {/* <p className="mt-4 text-center text-xs text-muted-foreground md:hidden">
           Desliza para ver más →
-        </p>
+        </p> */}
       </div>
     </section>
   );

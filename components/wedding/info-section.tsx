@@ -1,6 +1,5 @@
 
-import { Shirt, Music,  } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Shirt } from "lucide-react";
 
 export default function InfoSection() {
 

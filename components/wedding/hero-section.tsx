@@ -59,7 +59,7 @@ export function HeroSection() {
 
         <div className="w-24 h-px bg-primary mx-auto my-8" />
 
-        <p className="font-serif text-xl md:text-2xl text-foreground/80 mb-4">
+        <p className="font-serif text-2xl md:text-2xl text-foreground/80 mb-4">
           15 de Agosto, 2026
         </p>
         <p className="font-serif text-xl md:text-2xl text-foreground/80 mb-4">
@@ -68,7 +68,7 @@ export function HeroSection() {
 
         <p className="text-base md:text-lg text-muted-foreground italic max-w-lg mx-auto leading-relaxed mb-10">
           <br />
-          Queremos que seas parte de este día tan especial para nosotros.
+          Andábamos sin buscarnos pero sabiendo que andábamos para encontrarnos... <br />
         </p>
 
         {/* Countdown */}
@@ -91,14 +91,14 @@ export function HeroSection() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        {/* <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
             href="#rsvp"
             className="inline-block px-8 py-3 bg-primary text-primary-foreground font-medium tracking-wide rounded-sm hover:bg-primary/90 transition-colors"
           >
             Confirma tu asistencia
           </a>
-        </div>
+        </div> */}
       </div>
 
       {/* Scroll indicator */}

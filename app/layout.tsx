@@ -16,26 +16,12 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://boda-coni-nico.vercel.app'), // ← añadir
   title: 'Coni & Nico - Nuestra Boda',
   description: 'Te invitamos a celebrar nuestro amor en Tucumán, Argentina.',
-  generator: 'v0.app',
+  // generator: 'v0.app',  ← borrar esta línea
   icons: {
     icon: '/favicon.svg'
-    // icon: [
-    //   {
-    //     url: '/icon-light-32x32.png',
-    //     media: '(prefers-color-scheme: light)',
-    //   },
-    //   {
-    //     url: '/icon-dark-32x32.png',
-    //     media: '(prefers-color-scheme: dark)',
-    //   },
-    //   {
-    //     url: '/icon.svg',
-    //     type: 'image/svg+xml',
-    //   },
-    // ],
-    // apple: '/apple-icon.png',
   },
 }
 

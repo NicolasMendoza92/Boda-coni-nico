@@ -10,18 +10,28 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { CalendarPlus, Calendar, Apple, Mail } from "lucide-react"
 
-const EVENT = {
-  title: "Boda de Coni & Nico",
-  description:
-    "Ceremonia en Parroquia Nuestra Señora del Valle, seguida de fiesta en Terrazas de San José, Yerba Buena, Tucumán, Argentina.",
-  location: "Yerba Buena, Tucumán, Argentina",
-  // 👇 Fechas en formato local de Argentina (UTC-3)
-  startDate: "2026-08-15",
-  startTime: "16:00",
-  endDate: "2026-08-16",
-  endTime: "01:00",
-  timezone: "America/Argentina/Buenos_Aires",
-} as const
+interface AddToCalendarProps {
+  /** Título del evento que aparecerá en el calendario */
+  title: string
+  /** Descripción / detalles */
+  description: string
+  /** Dirección o lugar */
+  location: string
+  /** Fecha de inicio en formato YYYY-MM-DD (hora local de Argentina) */
+  startDate: string
+  /** Hora de inicio en formato HH:MM (24h, hora local de Argentina) */
+  startTime: string
+  /** Fecha de fin en formato YYYY-MM-DD */
+  endDate: string
+  /** Hora de fin en formato HH:MM */
+  endTime: string
+  /** Identificador único del evento (para el UID del .ics). Ej: "ceremonia" o "fiesta" */
+  uid: string
+  /** Texto del botón. Default: "Agendar" */
+  buttonLabel?: string
+}
+
+const TIMEZONE = "America/Argentina/Buenos_Aires"
 
 // Formato Google: YYYYMMDDTHHMMSS (en hora local) + parámetro ctz
 function fmtGoogle(date: string, time: string) {
@@ -42,24 +52,34 @@ function escapeIcs(text: string) {
     .replace(/\r?\n/g, "\\n")
 }
 
-export function AddToCalendar() {
+export function AddToCalendar({
+  title,
+  description,
+  location,
+  startDate,
+  startTime,
+  endDate,
+  endTime,
+  uid,
+  buttonLabel = "Agendar",
+}: AddToCalendarProps) {
   const [isOpen, setIsOpen] = useState(false)
 
   // Google: ctz=America/Argentina/Buenos_Aires fija la zona horaria
   const googleUrl =
     `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-    `&text=${encodeURIComponent(EVENT.title)}` +
-    `&dates=${fmtGoogle(EVENT.startDate, EVENT.startTime)}/${fmtGoogle(EVENT.endDate, EVENT.endTime)}` +
-    `&ctz=${encodeURIComponent(EVENT.timezone)}` +
-    `&details=${encodeURIComponent(EVENT.description)}` +
-    `&location=${encodeURIComponent(EVENT.location)}`
+    `&text=${encodeURIComponent(title)}` +
+    `&dates=${fmtGoogle(startDate, startTime)}/${fmtGoogle(endDate, endTime)}` +
+    `&ctz=${encodeURIComponent(TIMEZONE)}` +
+    `&details=${encodeURIComponent(description)}` +
+    `&location=${encodeURIComponent(location)}`
 
   const outlookUrl =
-    `https://outlook.live.com/calendar/0/action/compose?subject=${encodeURIComponent(EVENT.title)}` +
-    `&body=${encodeURIComponent(EVENT.description)}` +
-    `&location=${encodeURIComponent(EVENT.location)}` +
-    `&startdt=${fmtOutlook(EVENT.startDate, EVENT.startTime)}` +
-    `&enddt=${fmtOutlook(EVENT.endDate, EVENT.endTime)}`
+    `https://outlook.live.com/calendar/0/action/compose?subject=${encodeURIComponent(title)}` +
+    `&body=${encodeURIComponent(description)}` +
+    `&location=${encodeURIComponent(location)}` +
+    `&startdt=${fmtOutlook(startDate, startTime)}` +
+    `&enddt=${fmtOutlook(endDate, endTime)}`
 
   const downloadIcs = () => {
     // VTIMEZONE explícita para Buenos Aires (UTC-3) — clave para iOS/macOS
@@ -70,7 +90,7 @@ export function AddToCalendar() {
       "CALSCALE:GREGORIAN",
       "METHOD:PUBLISH",
       "BEGIN:VTIMEZONE",
-      `TZID:${EVENT.timezone}`,
+      `TZID:${TIMEZONE}`,
       "BEGIN:STANDARD",
       "DTSTART:19700101T000000",
       "TZOFFSETFROM:-0300",
@@ -79,13 +99,13 @@ export function AddToCalendar() {
       "END:STANDARD",
       "END:VTIMEZONE",
       "BEGIN:VEVENT",
-      `UID:boda-coni-nico-${EVENT.startDate}@bodaconinico`,
+      `UID:boda-coni-nico-${uid}-${startDate}@bodaconinico`,
       `DTSTAMP:${new Date().toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "")}`,
-      `DTSTART;TZID=${EVENT.timezone}:${fmtGoogle(EVENT.startDate, EVENT.startTime)}`,
-      `DTEND;TZID=${EVENT.timezone}:${fmtGoogle(EVENT.endDate, EVENT.endTime)}`,
-      `SUMMARY:${escapeIcs(EVENT.title)}`,
-      `DESCRIPTION:${escapeIcs(EVENT.description)}`,
-      `LOCATION:${escapeIcs(EVENT.location)}`,
+      `DTSTART;TZID=${TIMEZONE}:${fmtGoogle(startDate, startTime)}`,
+      `DTEND;TZID=${TIMEZONE}:${fmtGoogle(endDate, endTime)}`,
+      `SUMMARY:${escapeIcs(title)}`,
+      `DESCRIPTION:${escapeIcs(description)}`,
+      `LOCATION:${escapeIcs(location)}`,
       "STATUS:CONFIRMED",
       "END:VEVENT",
       "END:VCALENDAR",
@@ -101,7 +121,7 @@ export function AddToCalendar() {
     } else {
       const link = document.createElement("a")
       link.href = url
-      link.download = "boda-coni-nico.ics"
+      link.download = `boda-coni-nico-${uid}.ics`
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
@@ -120,12 +140,12 @@ export function AddToCalendar() {
           className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground"
         >
           <CalendarPlus className="w-5 h-5 mr-2" />
-          Agendar
+          {buttonLabel}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="center" className="w-52">
         <DropdownMenuItem asChild>
-          <a 
+          <a
             href={googleUrl}
             target="_blank"
             rel="noopener noreferrer"
@@ -140,7 +160,7 @@ export function AddToCalendar() {
           Apple Calendar
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <a 
+          <a
             href={outlookUrl}
             target="_blank"
             rel="noopener noreferrer"
