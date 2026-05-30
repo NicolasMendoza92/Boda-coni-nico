@@ -6,15 +6,23 @@ import { FadeInSection } from "@/components/wedding/fade-in-section";
 import { PhotoCarousel } from "@/components/wedding/photo-carousel";
 import { RegaloSection } from "@/components/wedding/regalo-section";
 
-export default function WeddingPage() {
+export const metadata = {
+  robots: { index: false, follow: false },
+};
+
+export default function WeddingPagePostCena() {
   return (
     <main className="min-h-screen overflow-x-clip">
       <HeroSection />
       <FadeInSection>
-        <LocationSection />
+        <LocationSection
+          showCeremony={false}
+          fiestaStartTime="22:00"
+          fiestaDisplayTime="22:00 hs"
+        />
       </FadeInSection>
       <FadeInSection>
-        <RsvpSection tipoInvitado="completo" horaDisplay="16:00 hs" />
+        <RsvpSection tipoInvitado="post-cena" horaDisplay="22:00 hs" />
       </FadeInSection>
       <FadeInSection>
         <RegaloSection />

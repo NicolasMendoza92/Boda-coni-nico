@@ -12,7 +12,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Heart, Check } from "lucide-react";
 
-export function RsvpSection() {
+interface RsvpSectionProps {                                     // ← nuevo
+  tipoInvitado?: "completo" | "post-cena";                       // ← nuevo
+  horaDisplay?: string;                                          // ← nuevo (para el texto bajo el título)
+}  
+
+export function RsvpSection({
+  tipoInvitado = "completo",
+  horaDisplay = "16:00 hs",
+}: RsvpSectionProps = {}) {
   const [isPending, startTransition] = useTransition();
   const [done, setDone] = useState(false);
 
@@ -23,7 +31,7 @@ export function RsvpSection() {
     watch,
   } = useForm<RsvpInput>({
     resolver: zodResolver(rsvpSchema),
-    defaultValues: { nombre: "", alergias: "" },
+    defaultValues: { nombre: "", alergias: "",  tipoInvitado },
   });
 
   const asisteValue = watch("asiste");
@@ -34,6 +42,7 @@ export function RsvpSection() {
       fd.append("nombre", values.nombre);
       fd.append("asiste", values.asiste);
       fd.append("alergias", values.alergias ?? "");
+      fd.append("tipoInvitado", tipoInvitado);
 
       const res = await submitRsvp(fd);
       if (res.ok) {
@@ -79,8 +88,8 @@ export function RsvpSection() {
           <h2 id="rsvp-title" className="font-serif text-3xl md:text-4xl">
             Confirma tu asistencia
           </h2> 
-           <p className="mt-2 text-sm text-muted-foreground">
-            15 de Agosto - 16:00 hs
+          <p className="mt-2 text-sm text-muted-foreground">
+            15 de Agosto - {horaDisplay}                          {/* ← dinámico */}
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
             Antes del 25 de Julio, por favor 🙏

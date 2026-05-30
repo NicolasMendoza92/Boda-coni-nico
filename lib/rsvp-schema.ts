@@ -10,6 +10,7 @@ export const rsvpSchema = z.object({
     message: "Cuéntanos si vienes 🥺",
   }),
   alergias: z.string().max(300, "Muy largo").optional().or(z.literal("")),
+  tipoInvitado: z.enum(["completo", "post-cena"]).default("completo"),
 });
 
 export type RsvpInput = z.infer<typeof rsvpSchema>;

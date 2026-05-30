@@ -10,6 +10,7 @@ export async function submitRsvp(formData: FormData) {
     nombre: formData.get("nombre"),
     asiste: formData.get("asiste"),
     alergias: formData.get("alergias") ?? "",
+    tipoInvitado: formData.get("tipoInvitado") ?? "completo",
   };
 
   const parsed = rsvpSchema.safeParse(raw);
@@ -29,6 +30,7 @@ export async function submitRsvp(formData: FormData) {
     nombre: parsed.data.nombre,
     asiste: parsed.data.asiste === "si",
     alergias: parsed.data.alergias || null,
+    tipo_invitado: parsed.data.tipoInvitado, 
     ip_hash: ipHash,
   });
 

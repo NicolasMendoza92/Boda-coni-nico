@@ -127,11 +127,11 @@ export function RegaloSection() {
                     CBU
                   </span>
                   <span className="flex-1 text-sm font-mono select-all break-all">
-                    1234567894561
+                    0720067088000040561840
                   </span>
                   <button
                     onClick={() =>
-                      handleCopy("cbu-ars", "1234567894561")
+                      handleCopy("cbu-ars", "0720067088000040561840")
                     }
                     aria-label="Copiar CBU cuenta pesos"
                     className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
