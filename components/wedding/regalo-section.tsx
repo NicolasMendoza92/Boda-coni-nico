@@ -46,7 +46,7 @@ export function RegaloSection() {
               <div className="flex flex-col items-start gap-1">
                 <span className="text-sm font-medium">Cuenta en dólares (USD)</span>
                 <span className="text-xs text-muted-foreground">
-                  Ideal si estás fuera de Argentina
+                  Banco BBVA
                 </span>
               </div>
             </AccordionTrigger>
@@ -85,11 +85,11 @@ export function RegaloSection() {
                     Alias
                   </span>
                   <span className="flex-1 text-sm font-mono select-all break-all">
-                    SALTO.BUEY.MANCHA
+                    CONI.NICO.TUCUMAN
                   </span>
                   <button
                     onClick={() =>
-                      handleCopy("alias-usd", "SALTO.BUEY.MANCHA")
+                      handleCopy("alias-usd", "CONI.NICO.TUCUMAN")
                     }
                     aria-label="Copiar alias cuenta dólar"
                     className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
@@ -111,7 +111,7 @@ export function RegaloSection() {
               <div className="flex flex-col items-start gap-1">
                 <span className="text-sm font-medium">Cuenta en pesos (ARS)</span>
                 <span className="text-xs text-muted-foreground">
-                  Para transferencias dentro de Argentina
+                  Banco BBVA
                 </span>
               </div>
             </AccordionTrigger>
@@ -127,11 +127,11 @@ export function RegaloSection() {
                     CBU
                   </span>
                   <span className="flex-1 text-sm font-mono select-all break-all">
-                    0720067088000040561840
+                    0170215840000022795296
                   </span>
                   <button
                     onClick={() =>
-                      handleCopy("cbu-ars", "0720067088000040561840")
+                      handleCopy("cbu-ars", "0170215840000022795296")
                     }
                     aria-label="Copiar CBU cuenta pesos"
                     className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
@@ -145,16 +145,16 @@ export function RegaloSection() {
                 </div>
 
                 {/* Alias ARS */}
-                <div className="flex items-center gap-2 bg-muted/70 px-3 py-2 rounded-md">
+                {/* <div className="flex items-center gap-2 bg-muted/70 px-3 py-2 rounded-md">
                   <span className="text-xs font-semibold text-emerald-700">
                     Alias
                   </span>
                   <span className="flex-1 text-sm font-mono select-all break-all">
-                    ALIAS.ALIAS.ALIAS
+                    CONI.NICO.TUCUMAN
                   </span>
                   <button
                     onClick={() =>
-                      handleCopy("alias-ars", "ALIAS.ALIAS.ALIAS")
+                      handleCopy("alias-ars", "CONI.NICO.TUCUMAN")
                     }
                     aria-label="Copiar alias cuenta pesos"
                     className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
@@ -165,7 +165,7 @@ export function RegaloSection() {
                       <Copy className="w-4 h-4" />
                     )}
                   </button>
-                </div>
+                </div> */}
               </div>
             </AccordionContent>
           </AccordionItem>
@@ -178,3 +178,5 @@ export function RegaloSection() {
     </section>
   );
 }
+
+// 0720067088000040561840 --CBU SANTANDER PESOS
