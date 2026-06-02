@@ -27,15 +27,12 @@ async function logout() {
 export default async function AdminPage() {
   if (!(await isAdminLoggedIn())) redirect("/admin/login")
 
-  // 1) Chequeo rápido del estado de Supabase (con timeout)
   const status = await checkSupabaseStatus()
 
-  // 2) Si está dormido → pantalla amigable con botón para despertar
   if (status.kind === "paused" || status.kind === "timeout") {
     return <DbPausedWarning message={status.message} />
   }
 
-  // 3) Si hay error de auth o desconocido → mensaje claro
   if (status.kind !== "ok") {
     return (
       <main className="min-h-[100dvh] flex items-center justify-center px-6">
@@ -52,10 +49,9 @@ export default async function AdminPage() {
     )
   }
 
-  // 4) Todo OK → query real
   const { data: rsvps, error } = await supabaseAdmin
     .from("rsvp")
-    .select("id, created_at, nombre, asiste, alergias")
+    .select("id, created_at, nombre, asiste, alergias, tipo_invitado")  // ← añadir tipo_invitado
     .order("created_at", { ascending: false })
 
   if (error) {
@@ -70,9 +66,13 @@ export default async function AdminPage() {
   const sies = rsvps?.filter((r) => r.asiste).length ?? 0
   const noes = total - sies
 
+  // Stats por tipo de invitado (solo quienes asisten)
+  const asistenCompleto = rsvps?.filter((r) => r.asiste && r.tipo_invitado === "completo").length ?? 0
+  const asistenPostCena = rsvps?.filter((r) => r.asiste && r.tipo_invitado === "post-cena").length ?? 0
+
   return (
     <main className="min-h-[100dvh] bg-background px-4 py-8 md:px-6 md:py-12">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-5xl">
         {/* Header */}
         <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
           <div>
@@ -97,8 +97,8 @@ export default async function AdminPage() {
           </div>
         </div>
 
-        {/* Stats */}
-        <div className="mb-6 grid grid-cols-3 gap-3">
+        {/* Stats principales */}
+        <div className="mb-3 grid grid-cols-3 gap-3">
           <StatCard icon={<Users className="h-4 w-4" />} label="Total" value={total} />
           <StatCard
             icon={<Check className="h-4 w-4 text-green-600" />}
@@ -109,6 +109,20 @@ export default async function AdminPage() {
             icon={<X className="h-4 w-4 text-muted-foreground" />}
             label="No asisten"
             value={noes}
+          />
+        </div>
+
+        {/* Stats por tipo (desglose de los que asisten) */}
+        <div className="mb-6 grid grid-cols-2 gap-3">
+          <StatCard
+            icon={<Check className="h-4 w-4 text-primary" />}
+            label="Ceremonia + fiesta"
+            value={asistenCompleto}
+          />
+          <StatCard
+            icon={<Check className="h-4 w-4 text-secondary" />}
+            label="Post-cena"
+            value={asistenPostCena}
           />
         </div>
 
@@ -129,6 +143,7 @@ export default async function AdminPage() {
               <TableRow>
                 <TableHead>Nombre</TableHead>
                 <TableHead>¿Asiste?</TableHead>
+                <TableHead>Tipo</TableHead>
                 <TableHead>Alergias</TableHead>
                 <TableHead className="text-right">Fecha</TableHead>
               </TableRow>
@@ -145,6 +160,9 @@ export default async function AdminPage() {
                         <Badge variant="secondary">No</Badge>
                       )}
                     </TableCell>
+                    <TableCell>
+                      <TipoBadge tipo={r.tipo_invitado} />
+                    </TableCell>
                     <TableCell className="text-sm text-muted-foreground">
                       {r.alergias || "—"}
                     </TableCell>
@@ -160,7 +178,7 @@ export default async function AdminPage() {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={4} className="text-center text-muted-foreground py-8">
+                  <TableCell colSpan={5} className="text-center text-muted-foreground py-8">
                     Aún no hay confirmaciones
                   </TableCell>
                 </TableRow>
@@ -177,14 +195,17 @@ export default async function AdminPage() {
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0 flex-1">
                     <p className="font-medium truncate">{r.nombre}</p>
-                    <p className="mt-1 text-xs text-muted-foreground">
-                      {new Date(r.created_at).toLocaleDateString("es-AR", {
-                        day: "2-digit",
-                        month: "short",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </p>
+                    <div className="mt-1 flex items-center gap-2 flex-wrap">
+                      <TipoBadge tipo={r.tipo_invitado} />
+                      <p className="text-xs text-muted-foreground">
+                        {new Date(r.created_at).toLocaleDateString("es-AR", {
+                          day: "2-digit",
+                          month: "short",
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </div>
                   </div>
                   {r.asiste ? (
                     <Badge className="bg-green-600 hover:bg-green-600 shrink-0">Sí</Badge>
@@ -227,5 +248,21 @@ function StatCard({
       </div>
       <p className="mt-1 text-2xl md:text-3xl font-serif">{value}</p>
     </div>
+  )
+}
+
+function TipoBadge({ tipo }: { tipo: string | null | undefined }) {
+  if (tipo === "post-cena") {
+    return (
+      <Badge variant="outline" className="border-secondary text-secondary">
+        Post-cena
+      </Badge>
+    )
+  }
+  // default: completo (también cubre null/undefined de registros viejos)
+  return (
+    <Badge variant="outline">
+      Completo
+    </Badge>
   )
 }

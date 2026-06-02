@@ -17,7 +17,7 @@ const lato = Lato({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://boda-coni-nico.vercel.app'), // ← añadir
-  title: 'Coni & Nico - Nuestra Boda',
+  title: 'Casamiento - Coni & Nico',
   description: 'Te invitamos a celebrar nuestro amor en Tucumán, Argentina.',
   // generator: 'v0.app',  ← borrar esta línea
   icons: {

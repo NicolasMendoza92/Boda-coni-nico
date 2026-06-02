@@ -66,7 +66,7 @@ export function LocationSection({
                     <p className="text-muted-foreground">
                       Florida Sur 251
                       <br />
-                      T4107 Yerba Buena, Tucuman
+                      T4107 Yerba Buena, Tucumán
                       <br />
                       Argentina
                     </p>
@@ -201,11 +201,11 @@ export function LocationSection({
         {/* Dress Code */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col items-center text-center">
           <div className="flex items-center gap-2 mb-2">
-            <Shirt className="w-5 h-5 text-primary" />
-            <p className="font-serif text-lg text-foreground">
+            <Shirt className="w-6 h-6 text-secondary" />
+            <h3 className="font-serif text-3xl text-foreground">
               Dress Code:{" "}
               <span className="text-muted-foreground font-bold">Elegante</span>
-            </p>
+            </h3>
           </div>
           <ul className="flex flex-col gap-0.5 text-sm text-muted-foreground">
             <li>Ellas: vestido de fiesta</li>

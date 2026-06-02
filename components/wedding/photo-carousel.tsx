@@ -34,7 +34,7 @@ export function PhotoCarousel() {
     <section className="px-6 py-20" aria-label="Galería de fotos">
       <div className="mx-auto max-w-4xl">
         <h2 className="mb-8 text-center font-serif text-3xl md:text-4xl">
-          Un poco de nostostros
+          Un poco de nosotros...
         </h2>
 
         <Carousel
