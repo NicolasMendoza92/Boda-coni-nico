@@ -27,7 +27,7 @@ export function RegaloSection() {
         </div>
 
         <h2 className="font-serif text-2xl md:text-3xl text-foreground">
-          Tu mejor regalo: ¡tu presencia!
+          El mejor regalo: ¡tu presencia!
         </h2>
 
         <p className="text-sm md:text-base text-muted-foreground">
