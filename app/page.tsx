@@ -5,6 +5,7 @@ import { Footer } from "@/components/wedding/footer";
 import { FadeInSection } from "@/components/wedding/fade-in-section";
 import { PhotoCarousel } from "@/components/wedding/photo-carousel";
 import { RegaloSection } from "@/components/wedding/regalo-section";
+import { CancionesSection } from "@/components/wedding/canciones-section";
 
 export default function WeddingPage() {
   return (
@@ -18,6 +19,9 @@ export default function WeddingPage() {
       </FadeInSection>
       <FadeInSection>
         <RegaloSection />
+      </FadeInSection>
+      <FadeInSection>
+        <CancionesSection />
       </FadeInSection>
       <FadeInSection>
         <PhotoCarousel />
