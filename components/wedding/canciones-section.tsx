@@ -52,7 +52,7 @@ export function CancionesSection() {
         <div className="mb-8 text-center">
           <Music className="mx-auto mb-4 h-8 w-8 text-primary" />
           <h2 id="canciones-title" className="font-serif text-3xl md:text-4xl">
-            Aañade tus canciones favoritas
+            Añade tus canciones favoritas
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
             Ayudanos a armar la playlist de la noche 🎶

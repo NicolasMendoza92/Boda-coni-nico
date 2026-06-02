@@ -141,18 +141,18 @@ export function LocationSection({
               <div className="flex items-center justify-center md:justify-start gap-2 text-secondary">
                 <Clock className="w-5 h-5" />
                 <span className="font-serif text-xl">
-                  Sabado 15 de Agosto - <b>17:15 hs</b>
+                  Sábado 15 de Agosto - <b>17:15 hs</b>
                 </span>
               </div>
 
               <div>
                 <h4 className="font-serif text-xl text-foreground mb-2">
-                  Terrazas de San Jose
+                  Terrazas de San José
                 </h4>
                 <p className="text-muted-foreground">
                   Camino de Sirga y La Rioja
                   <br />
-                  Yerba Buena, Tucuman 4107
+                  Yerba Buena, Tucumán 4107
                   <br />
                   Argentina
                 </p>
@@ -161,7 +161,7 @@ export function LocationSection({
               <div className="flex items-start justify-center md:justify-start gap-3 text-muted-foreground">
                 <Car className="w-5 h-5 text-primary mt-1 shrink-0" />
                 <p className="text-sm text-left">
-                  A 20 minutos del centro de San Miguel de Tucuman. Recomendamos
+                  A 20 minutos del centro de San Miguel de Tucumán. Recomendamos
                   ir en remis/taxi o Uber.
                 </p>
               </div>
