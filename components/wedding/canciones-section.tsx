@@ -80,6 +80,7 @@ export function CancionesSection() {
             <Input
               id="cancion"
               placeholder="Ej: Azul - Cristian Castro · o link de Spotify/YouTube"
+              className="placeholder:text-xs placeholder:text-muted-foreground"
               aria-invalid={!!errors.cancion}
               {...register("cancion")}
             />

@@ -98,7 +98,7 @@ export function RsvpSection({
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
           <div className="space-y-2">
-            <Label htmlFor="nombre">Nombre y apellidos</Label>
+            <Label htmlFor="nombre">Nombre y Apellido</Label>
             <Input
               id="nombre"
               autoComplete="name"
@@ -110,6 +110,9 @@ export function RsvpSection({
             {errors.nombre && (
               <p className="text-xs text-destructive">{errors.nombre.message}</p>
             )}
+            <span className="text-xs text-muted-foreground">
+              *Completar de manera individual por cada invitado
+            </span>
           </div>
 
           <fieldset className="space-y-2">
