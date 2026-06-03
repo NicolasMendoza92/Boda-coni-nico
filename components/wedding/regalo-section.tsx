@@ -145,16 +145,16 @@ export function RegaloSection() {
                 </div>
 
                 {/* Alias ARS */}
-                {/* <div className="flex items-center gap-2 bg-muted/70 px-3 py-2 rounded-md">
+                <div className="flex items-center gap-2 bg-muted/70 px-3 py-2 rounded-md">
                   <span className="text-xs font-semibold text-emerald-700">
                     Alias
                   </span>
                   <span className="flex-1 text-sm font-mono select-all break-all">
-                    CONI.NICO.TUCUMAN
+                    BODA.CONI.NICO
                   </span>
                   <button
                     onClick={() =>
-                      handleCopy("alias-ars", "CONI.NICO.TUCUMAN")
+                      handleCopy("alias-ars", "BODA.CONI.NICO")
                     }
                     aria-label="Copiar alias cuenta pesos"
                     className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
@@ -165,7 +165,7 @@ export function RegaloSection() {
                       <Copy className="w-4 h-4" />
                     )}
                   </button>
-                </div> */}
+                </div>
               </div>
             </AccordionContent>
           </AccordionItem>
