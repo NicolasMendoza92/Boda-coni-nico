@@ -169,6 +169,71 @@ export function RegaloSection() {
               </div>
             </AccordionContent>
           </AccordionItem>
+
+           {/* Cuenta Mercado pago */}
+          <AccordionItem value="ars">
+            <AccordionTrigger className="px-4 md:px-6">
+              <div className="flex flex-col items-start gap-1">
+                <span className="text-sm font-medium">Mercado pago (ARS)</span>
+                <span className="text-xs text-muted-foreground">
+                  Mercado pago
+                </span>
+              </div>
+            </AccordionTrigger>
+            <AccordionContent className="px-4 pb-4 md:px-6 md:pb-6 space-y-3">
+              <div className="text-xs uppercase tracking-wide text-muted-foreground">
+                Datos de la cuenta
+              </div>
+
+              <div className="space-y-2">
+                {/* CVU ARS */}
+                <div className="flex items-center gap-2 bg-muted/70 px-3 py-2 rounded-md">
+                  <span className="text-xs font-semibold text-emerald-700">
+                    CVU
+                  </span>
+                  <span className="flex-1 text-sm font-mono select-all break-all">
+                    0000003100068533219874
+                  </span>
+                  <button
+                    onClick={() =>
+                      handleCopy("cvu-ars-mp", "0000003100068533219874")
+                    }
+                    aria-label="Copiar CVU cuenta pesos"
+                    className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
+                  >
+                    {isCopied("cvu-ars-mp") ? (
+                      <Check className="w-4 h-4" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+
+                {/* Alias ARS */}
+                <div className="flex items-center gap-2 bg-muted/70 px-3 py-2 rounded-md">
+                  <span className="text-xs font-semibold text-emerald-700">
+                    Alias
+                  </span>
+                  <span className="flex-1 text-sm font-mono select-all break-all">
+                    bodaconinico.mp
+                  </span>
+                  <button
+                    onClick={() =>
+                      handleCopy("alias-ars-mp", "bodaconinico.mp")
+                    }
+                    aria-label="Copiar alias cuenta pesos"
+                    className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
+                  >
+                    {isCopied("alias-ars-mp") ? (
+                      <Check className="w-4 h-4" />
+                    ) : (
+                      <Copy className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
+              </div>
+            </AccordionContent>
+          </AccordionItem>
         </Accordion>
 
         <p className="mt-4 text-xs text-muted-foreground">
