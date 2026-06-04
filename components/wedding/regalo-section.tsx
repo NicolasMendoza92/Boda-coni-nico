@@ -44,7 +44,9 @@ export function RegaloSection() {
           <AccordionItem value="usd">
             <AccordionTrigger className="px-4 md:px-6">
               <div className="flex flex-col items-start gap-1">
-                <span className="text-sm font-medium">Cuenta en dólares (USD)</span>
+                <span className="text-sm font-medium">
+                  Cuenta en dólares (USD)
+                </span>
                 <span className="text-xs text-muted-foreground">
                   Banco BBVA
                 </span>
@@ -88,9 +90,7 @@ export function RegaloSection() {
                     CONI.NICO.TUCUMAN
                   </span>
                   <button
-                    onClick={() =>
-                      handleCopy("alias-usd", "CONI.NICO.TUCUMAN")
-                    }
+                    onClick={() => handleCopy("alias-usd", "CONI.NICO.TUCUMAN")}
                     aria-label="Copiar alias cuenta dólar"
                     className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
                   >
@@ -109,7 +109,9 @@ export function RegaloSection() {
           <AccordionItem value="ars">
             <AccordionTrigger className="px-4 md:px-6">
               <div className="flex flex-col items-start gap-1">
-                <span className="text-sm font-medium">Cuenta en pesos (ARS)</span>
+                <span className="text-sm font-medium">
+                  Cuenta en pesos (ARS)
+                </span>
                 <span className="text-xs text-muted-foreground">
                   Banco BBVA
                 </span>
@@ -153,9 +155,7 @@ export function RegaloSection() {
                     BODA.CONI.NICO
                   </span>
                   <button
-                    onClick={() =>
-                      handleCopy("alias-ars", "BODA.CONI.NICO")
-                    }
+                    onClick={() => handleCopy("alias-ars", "BODA.CONI.NICO")}
                     aria-label="Copiar alias cuenta pesos"
                     className="flex items-center justify-center rounded-full bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition h-8 w-8"
                   >
@@ -170,6 +170,10 @@ export function RegaloSection() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+        <div className="mt-4 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
+          <Gift className="h-3.5 w-3.5 text-emerald-600" />
+          <span>También habrá urna en el salón.</span>
+        </div>
 
         <p className="mt-4 text-xs text-muted-foreground">
           Gracias por acompañarnos en este momento tan especial.

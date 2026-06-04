@@ -10,12 +10,21 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Heart, Check } from "lucide-react";
+import { Heart, Check, Info } from "lucide-react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  DialogDescription,
+} from "@/components/ui/dialog";
 
-interface RsvpSectionProps {                                     // ← nuevo
-  tipoInvitado?: "completo" | "post-cena";                       // ← nuevo
-  horaDisplay?: string;                                          // ← nuevo (para el texto bajo el título)
-}  
+interface RsvpSectionProps {
+  // ← nuevo
+  tipoInvitado?: "completo" | "post-cena"; // ← nuevo
+  horaDisplay?: string; // ← nuevo (para el texto bajo el título)
+}
 
 export function RsvpSection({
   tipoInvitado = "completo",
@@ -31,7 +40,7 @@ export function RsvpSection({
     watch,
   } = useForm<RsvpInput>({
     resolver: zodResolver(rsvpSchema),
-    defaultValues: { nombre: "", alergias: "",  tipoInvitado },
+    defaultValues: { nombre: "", alergias: "", tipoInvitado },
   });
 
   const asisteValue = watch("asiste");
@@ -87,16 +96,20 @@ export function RsvpSection({
           <Heart className="mx-auto mb-4 h-8 w-8 text-primary" />
           <h2 id="rsvp-title" className="font-serif text-3xl md:text-4xl">
             Confirma tu asistencia
-          </h2> 
+          </h2>
           <p className="mt-2 text-sm text-muted-foreground">
-            15 de Agosto - {horaDisplay}                          {/* ← dinámico */}
+            15 de Agosto - {horaDisplay} {/* ← dinámico */}
           </p>
           <p className="mt-2 text-sm text-muted-foreground">
             Antes del 25 de Julio, por favor 🙏
           </p>
         </div>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-5"
+          noValidate
+        >
           <div className="space-y-2">
             <Label htmlFor="nombre">Nombre y Apellido</Label>
             <Input
@@ -108,11 +121,40 @@ export function RsvpSection({
               {...register("nombre")}
             />
             {errors.nombre && (
-              <p className="text-xs text-destructive">{errors.nombre.message}</p>
+              <p className="text-xs text-destructive">
+                {errors.nombre.message}
+              </p>
             )}
-            <span className="text-xs text-muted-foreground">
-              *Completar de manera individual por cada invitado
-            </span>
+            <div className="flex items-center gap-1.5">
+              <span className="text-xs text-muted-foreground">
+                *Completar de manera individual por cada invitado
+              </span>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button
+                    type="button"
+                    aria-label="Más información"
+                    className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-muted-foreground/40 text-muted-foreground transition hover:border-muted-foreground hover:text-foreground"
+                  >
+                    <Info className="h-3 w-3" />
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="max-w-sm">
+                  <DialogHeader>
+                    <DialogTitle className="flex items-center gap-2">
+                      <Info className="h-4 w-4 text-primary" />
+                      ¿Cómo completar?
+                    </DialogTitle>
+                    <DialogDescription className="pt-2 text-left leading-relaxed">
+                      Cada invitado debe confirmar de forma individual. Si estás
+                      invitado con tu pareja, completá el formulario una vez por
+                      cada persona: primero con el nombre y apellido de uno y
+                      luego con el del otro.
+                    </DialogDescription>
+                  </DialogHeader>
+                </DialogContent>
+              </Dialog>
+            </div>
           </div>
 
           <fieldset className="space-y-2">
@@ -150,7 +192,9 @@ export function RsvpSection({
               </label>
             </div>
             {errors.asiste && (
-              <p className="text-xs text-destructive">{errors.asiste.message}</p>
+              <p className="text-xs text-destructive">
+                {errors.asiste.message}
+              </p>
             )}
           </fieldset>
 
