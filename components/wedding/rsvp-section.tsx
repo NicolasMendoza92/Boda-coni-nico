@@ -198,7 +198,7 @@ export function RsvpSection({
             )}
           </fieldset>
 
-          {asisteValue === "si" && (
+          {asisteValue === "si" && tipoInvitado === "completo" && (
             <div className="space-y-2">
               <Label htmlFor="alergias">
                 Alergias o restricciones alimentarias
