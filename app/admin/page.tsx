@@ -4,16 +4,8 @@ import { isAdminLoggedIn, destroyAdminSession } from "@/lib/admin-session";
 import { supabaseAdmin } from "@/lib/supabase";
 import { checkSupabaseStatus } from "@/lib/supabase-status";
 import { Button } from "@/components/ui/button";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { DbPausedWarning } from "@/components/wedding/db-paused-warning";
+import { AdminRsvpList } from "@/components/wedding/admin-rsvp-list";
 import { Download, ExternalLink, LogOut, Users, Check, X } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -52,7 +44,7 @@ export default async function AdminPage() {
 
   const { data: rsvps, error } = await supabaseAdmin
     .from("rsvp")
-    .select("id, created_at, nombre, asiste, alergias, tipo_invitado") // ← añadir tipo_invitado
+    .select("id, created_at, nombre, asiste, alergias, tipo_invitado")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -158,105 +150,9 @@ export default async function AdminPage() {
           </Button>
         </div>
 
-        {/* Tabla — desktop */}
-        <div className="hidden md:block rounded-lg border bg-card">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Nombre</TableHead>
-                <TableHead>¿Asiste?</TableHead>
-                <TableHead>Tipo</TableHead>
-                <TableHead>Alergias</TableHead>
-                <TableHead className="text-right">Fecha</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {rsvps && rsvps.length > 0 ? (
-                rsvps.map((r) => (
-                  <TableRow key={r.id}>
-                    <TableCell className="font-medium">{r.nombre}</TableCell>
-                    <TableCell>
-                      {r.asiste ? (
-                        <Badge className="bg-green-600 hover:bg-green-600">
-                          Sí
-                        </Badge>
-                      ) : (
-                        <Badge variant="secondary">No</Badge>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      <TipoBadge tipo={r.tipo_invitado} />
-                    </TableCell>
-                    <TableCell className="text-sm text-muted-foreground">
-                      {r.alergias || "—"}
-                    </TableCell>
-                    <TableCell className="text-right text-xs text-muted-foreground">
-                      {new Date(r.created_at).toLocaleDateString("es-AR", {
-                        day: "2-digit",
-                        month: "short",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                      })}
-                    </TableCell>
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={5}
-                    className="text-center text-muted-foreground py-8"
-                  >
-                    Aún no hay confirmaciones
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
+        {/* Lista de invitados (buscador + editar + borrar) */}
+        <AdminRsvpList rsvps={rsvps ?? []} />
 
-        {/* Cards — mobile */}
-        <div className="md:hidden space-y-3">
-          {rsvps && rsvps.length > 0 ? (
-            rsvps.map((r) => (
-              <div key={r.id} className="rounded-lg border bg-card p-4">
-                <div className="flex items-start justify-between gap-3">
-                  <div className="min-w-0 flex-1">
-                    <p className="font-medium truncate">{r.nombre}</p>
-                    <div className="mt-1 flex items-center gap-2 flex-wrap">
-                      <TipoBadge tipo={r.tipo_invitado} />
-                      <p className="text-xs text-muted-foreground">
-                        {new Date(r.created_at).toLocaleDateString("es-AR", {
-                          day: "2-digit",
-                          month: "short",
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </p>
-                    </div>
-                  </div>
-                  {r.asiste ? (
-                    <Badge className="bg-green-600 hover:bg-green-600 shrink-0">
-                      Sí
-                    </Badge>
-                  ) : (
-                    <Badge variant="secondary" className="shrink-0">
-                      No
-                    </Badge>
-                  )}
-                </div>
-                {r.alergias && (
-                  <p className="mt-3 text-sm text-muted-foreground border-t pt-3">
-                    🍽️ {r.alergias}
-                  </p>
-                )}
-              </div>
-            ))
-          ) : (
-            <p className="text-center text-muted-foreground py-8">
-              Aún no hay confirmaciones
-            </p>
-          )}
-        </div>
         {/* Canciones sugeridas */}
         <section className="mt-16 border-t pt-10">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
@@ -351,16 +247,4 @@ function CancionTexto({ texto }: { texto: string }) {
       {after}
     </p>
   );
-}
-
-function TipoBadge({ tipo }: { tipo: string | null | undefined }) {
-  if (tipo === "post-cena") {
-    return (
-      <Badge variant="outline" className="border-secondary text-secondary">
-        Post-cena
-      </Badge>
-    );
-  }
-  // default: completo (también cubre null/undefined de registros viejos)
-  return <Badge variant="outline">Completo</Badge>;
 }
