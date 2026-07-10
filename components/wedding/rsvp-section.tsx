@@ -103,6 +103,11 @@ export function RsvpSection({
           <p className="mt-2 text-sm text-muted-foreground">
             Antes del 25 de Julio, por favor 🙏
           </p>
+          {tipoInvitado === "post-cena" && (
+            <p className="mt-2 text-sm text-muted-foreground">
+              Acceso habilitado a la fiesta post cena.
+            </p>
+          )}
         </div>
 
         <form

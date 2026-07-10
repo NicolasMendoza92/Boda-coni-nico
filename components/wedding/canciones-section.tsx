@@ -60,7 +60,7 @@ export function CancionesSection() {
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
-          {/* <div className="space-y-2">
+          <div className="space-y-2">
             <Label htmlFor="cancion-nombre">
               Tu nombre
               <span className="ml-1 text-xs text-muted-foreground">
@@ -73,7 +73,7 @@ export function CancionesSection() {
               placeholder="Para saber quién la pidió"
               {...register("nombre")}
             />
-          </div> */}
+          </div>
 
           <div className="space-y-2">
             <Label htmlFor="cancion">Canción o link</Label>

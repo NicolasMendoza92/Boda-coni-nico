@@ -5,6 +5,7 @@ import {
   Clock,
   PartyPopperIcon,
   Shirt,
+  PartyPopper,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AddToCalendar } from "./add-to-calendar";
@@ -141,7 +142,13 @@ export function LocationSection({
               <div className="flex items-center justify-center md:justify-start gap-2 text-secondary">
                 <Clock className="w-5 h-5" />
                 <span className="font-serif text-xl">
-                  Sábado 15 de Agosto - <b>17:15 hs</b>
+                  Sábado 15 de Agosto - <b>22:00 hs</b>
+                </span>
+              </div>
+              <div className="flex items-center justify-center md:justify-start gap-2 text-secondary">
+                <PartyPopper className="w-5 h-5" />
+                <span className="font-serif text-xl">
+                  Bilamos y compartimos unos tragos.
                 </span>
               </div>
 
