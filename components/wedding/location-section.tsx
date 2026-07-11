@@ -148,7 +148,7 @@ export function LocationSection({
               <div className="flex items-center justify-center md:justify-start gap-2 text-secondary">
                 <PartyPopper className="w-5 h-5" />
                 <span className="font-serif text-xl">
-                  Bilamos y compartimos unos tragos.
+                  Bailamos y compartimos unas copas :)
                 </span>
               </div>
 
