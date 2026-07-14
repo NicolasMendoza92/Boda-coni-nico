@@ -24,6 +24,12 @@ export function LocationSection({
   fiestaStartTime = "17:15",
   fiestaDisplayTime = "17:15 hs",
 }: LocationSectionProps) {
+  const resolvedFiestaStartTime =
+    fiestaStartTime ?? (showCeremony ? "17:15" : "22:00");
+
+  const resolvedFiestaDisplayTime =
+    fiestaDisplayTime ?? (showCeremony ? "17:15 hs" : "22:00 hs");
+
   return (
     <section className="py-24 px-6 bg-card">
       <div className="max-w-4xl mx-auto">
@@ -142,7 +148,7 @@ export function LocationSection({
               <div className="flex items-center justify-center md:justify-start gap-2 text-secondary">
                 <Clock className="w-5 h-5" />
                 <span className="font-serif text-xl">
-                  Sábado 15 de Agosto - <b>22:00 hs</b>
+                  Sábado 15 de Agosto -  <b>{resolvedFiestaDisplayTime}</b>
                 </span>
               </div>
               <div className="flex items-center justify-center md:justify-start gap-2 text-secondary">
@@ -195,7 +201,7 @@ export function LocationSection({
                   description="¡A celebrar! Te esperamos en Terrazas de San José."
                   location="Terrazas de San José, Camino de Sirga y La Rioja, Yerba Buena, Tucumán, Argentina"
                   startDate="2026-08-15"
-                  startTime="17:15"
+                  startTime={resolvedFiestaStartTime}
                   endDate="2026-08-16"
                   endTime="01:00"
                   uid="fiesta"
@@ -209,9 +215,7 @@ export function LocationSection({
         <div className="mt-10 pt-6 border-t border-border flex flex-col items-center text-center">
           <div className="flex items-center gap-2 mb-2">
             <Shirt className="w-6 h-6 text-secondary" />
-            <h3 className="font-serif text-3xl text-foreground">
-              Dress Code
-            </h3> 
+            <h3 className="font-serif text-3xl text-foreground">Dress Code</h3>
           </div>
           <p className="text-muted-foreground font-bold mb-1">Elegante</p>
           <ul className="flex flex-col gap-0.5 text-sm text-muted-foreground">
